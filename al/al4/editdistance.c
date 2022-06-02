@@ -115,12 +115,37 @@ int main()
 // align_str : 정렬된 문자쌍들의 정보가 저장된 문자열 배열 예) "a - a", "a - b", "* - b", "ab - ba"
 static void backtrace_main(int *op_matrix, int col_size, char *str1, char *str2, int n, int m, int level, char align_str[][8])
 {
+
 }
 
 // 강의 자료의 형식대로 op_matrix를 출력 (좌하단(1,1) -> 우상단(n, m))
 // 각 연산자를 다음과 같은 기호로 표시한다. 삽입:I, 삭제:D, 교체:S, 일치:M, 전위:T
 void print_matrix(int *op_matrix, int col_size, char *str1, char *str2, int n, int m)
 {
+	for (int i = n; i > 0; i--)
+	{
+		printf("%c", str1[i - 1]);
+		for (int j = 1; j < col_size; j++)
+		{
+			printf("\t");
+			if (op_matrix[i * col_size + j] & 16)
+				printf("T");
+			if (op_matrix[i * col_size + j] & 8)
+				printf("M");
+			if (op_matrix[i * col_size + j] & 4)
+				printf("S");
+			if (op_matrix[i * col_size + j] & 2)
+				printf("D");
+			if (op_matrix[i * col_size + j] & 1)
+				printf("I");
+		}
+		printf("\n");
+	}
+	for (int i = 0; i < m; i++)
+	{
+		printf("\t%c", str2[i]);
+	}
+	printf("\n");
 }
 
 // 두 문자열 str1과 str2의 최소편집거리를 계산한다.
@@ -137,13 +162,62 @@ int min_editdistance(char *str1, char *str2)
 
 	for (int i = 0; i < n + 1; i++)
 	{
-		op_matrix[i] = i;
+		d[i][0] = i;
+		op_matrix[i * (n + 1)] = -1;
 	}
 
 	for (int i = 0; i < m + 1; i++)
 	{
-		op_matrix[n * i] = i;
+		d[0][i] = i;
+		op_matrix[i] = -1;
 	}
 
+	for (int i = 1; i < n + 1; i++)
+	{
+		for (int j = 1; j < m + 1; j++)
+		{
+			op_matrix[i * (n + 1) + j] = 0;
 
+			if (str1[i - 1] == str2[j - 1])
+			{
+				d[i][j] = d[i - 1][j - 1];
+				op_matrix[i * (n + 1) + j] = MATCH_OP;
+			}
+			else
+			{
+				if ((i > 1 && j > 1) && str1[i - 2] == str2[j - 1] && str1[i - 1] == str2[j - 2])
+				{
+					d[i][j] = __GetMin4(d[i][j - 1] + INSERT_COST, d[i - 1][j] + DELETE_COST, d[i - 1][j - 1] + SUBSTITUTE_COST, d[i - 2][j - 2] + TRANSPOSE_COST);
+					if (d[i][j] == d[i - 2][j - 2] + TRANSPOSE_COST)
+					{
+						op_matrix[i * (n + 1) + j] = TRANSPOSE_OP;
+						continue;
+					}
+				}
+				else
+				{
+					d[i][j] = __GetMin3(d[i][j - 1] + INSERT_COST, d[i - 1][j] + DELETE_COST, d[i - 1][j - 1] + SUBSTITUTE_COST);
+				}
+
+				if (d[i][j] == d[i - 1][j - 1] + SUBSTITUTE_COST)
+				{
+					op_matrix[i * (n + 1) + j] += SUBSTITUTE_OP;
+				}
+				if (d[i][j] == d[i][j - 1] + INSERT_COST)
+				{
+					op_matrix[i * (n + 1) + j] += INSERT_OP;
+				}
+				if (d[i][j] == d[i - 1][j] + DELETE_COST)
+				{
+					op_matrix[i * (n + 1) + j] += DELETE_OP;
+				}
+			}
+		}
+	}
+
+	print_matrix(op_matrix, n + 1, str1, str2, n, m);
+
+	backtrace(op_matrix, n+1, str1, str2, n, m);
+
+	return d[n][m];
 }
