@@ -125,17 +125,6 @@ static void backtrace_main(int *op_matrix, int col_size, char *str1, char *str2,
 		return;
 	}
 
-	if (op_matrix[n * col_size + m] & 16) // Transpose
-	{
-		align_str[level][0] = str1[n - 2];
-		align_str[level][1] = str1[n - 1];
-		align_str[level][2] = '\0';
-		strcat(align_str[level], " - ");
-		align_str[level][5] = str2[m - 2];
-		align_str[level][6] = str2[m - 1];
-		align_str[level][7] = '\0';
-		backtrace_main(op_matrix, col_size, str1, str2, n - 2, m - 2, level + 1, align_str);
-	}
 	if (op_matrix[n * col_size + m] & 8) // Match
 	{
 		align_str[level][0] = str1[n - 1];
@@ -154,6 +143,13 @@ static void backtrace_main(int *op_matrix, int col_size, char *str1, char *str2,
 		align_str[level][5] = '\0';
 		backtrace_main(op_matrix, col_size, str1, str2, n - 1, m - 1, level + 1, align_str);
 	}
+	if (op_matrix[n * col_size + m] & 1) // Insert
+	{
+		strcpy(align_str[level], "* - ");
+		align_str[level][4] = str2[m - 1];
+		align_str[level][5] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n, m - 1, level + 1, align_str);
+	}
 	if (op_matrix[n * col_size + m] & 2) // Delete
 	{
 		align_str[level][0] = str1[n - 1];
@@ -162,12 +158,16 @@ static void backtrace_main(int *op_matrix, int col_size, char *str1, char *str2,
 		align_str[level][5] = '\0';
 		backtrace_main(op_matrix, col_size, str1, str2, n - 1, m, level + 1, align_str);
 	}
-	if (op_matrix[n * col_size + m] & 1) // Insert
+	if (op_matrix[n * col_size + m] & 16) // Transpose
 	{
-		strcpy(align_str[level], "* - ");
-		align_str[level][4] = str2[m - 1];
-		align_str[level][5] = '\0';
-		backtrace_main(op_matrix, col_size, str1, str2, n, m - 1, level + 1, align_str);
+		align_str[level][0] = str1[n - 2];
+		align_str[level][1] = str1[n - 1];
+		align_str[level][2] = '\0';
+		strcat(align_str[level], " - ");
+		align_str[level][5] = str2[m - 2];
+		align_str[level][6] = str2[m - 1];
+		align_str[level][7] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n - 2, m - 2, level + 1, align_str);
 	}
 
 	if (level == 0)
@@ -184,18 +184,18 @@ void print_matrix(int *op_matrix, int col_size, char *str1, char *str2, int n, i
 		for (int j = 1; j < col_size; j++)
 		{
 			printf("\t");
-			if (op_matrix[i * col_size + j] & 16)
-				printf("T");
 			if (op_matrix[i * col_size + j] & 8)
 				printf("M");
 			if (op_matrix[i * col_size + j] & 4)
 				printf("S");
-			if (op_matrix[i * col_size + j] & 2)
-				printf("D");
 			if (op_matrix[i * col_size + j] & 1)
 				printf("I");
+			if (op_matrix[i * col_size + j] & 2)
+				printf("D");
+			if (op_matrix[i * col_size + j] & 16)
+				printf("T");
 		}
-		printf("\n");
+		printf("\t\n");
 	}
 	for (int i = 0; i < m; i++)
 	{
@@ -240,6 +240,15 @@ int min_editdistance(char *str1, char *str2)
 			{
 				d[i][j] = d[i - 1][j - 1];
 				op_matrix[i * (m + 1) + j] = MATCH_OP;
+
+				if (d[i][j] == d[i][j - 1] + INSERT_COST)
+				{
+					op_matrix[i * (m + 1) + j] += INSERT_OP;
+				}
+				if (d[i][j] == d[i - 1][j] + DELETE_COST)
+				{
+					op_matrix[i * (m + 1) + j] += DELETE_OP;
+				}
 			}
 			else
 			{
@@ -249,7 +258,6 @@ int min_editdistance(char *str1, char *str2)
 					if (d[i][j] == d[i - 2][j - 2] + TRANSPOSE_COST)
 					{
 						op_matrix[i * (m + 1) + j] = TRANSPOSE_OP;
-						continue;
 					}
 				}
 				else
