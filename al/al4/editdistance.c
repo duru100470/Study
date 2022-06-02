@@ -115,7 +115,63 @@ int main()
 // align_str : 정렬된 문자쌍들의 정보가 저장된 문자열 배열 예) "a - a", "a - b", "* - b", "ab - ba"
 static void backtrace_main(int *op_matrix, int col_size, char *str1, char *str2, int n, int m, int level, char align_str[][8])
 {
+	static int count = 1;
 
+	if (n == 0 && m == 0)
+	{
+		printf("\n[%d] ==============================\n", count);
+		count++;
+		print_alignment(align_str, level - 1);
+		return;
+	}
+
+	if (op_matrix[n * col_size + m] & 16) // Transpose
+	{
+		align_str[level][0] = str1[n - 2];
+		align_str[level][1] = str1[n - 1];
+		align_str[level][2] = '\0';
+		strcat(align_str[level], " - ");
+		align_str[level][5] = str2[m - 2];
+		align_str[level][6] = str2[m - 1];
+		align_str[level][7] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n - 2, m - 2, level + 1, align_str);
+	}
+	if (op_matrix[n * col_size + m] & 8) // Match
+	{
+		align_str[level][0] = str1[n - 1];
+		align_str[level][1] = '\0';
+		strcat(align_str[level], " - ");
+		align_str[level][4] = str2[m - 1];
+		align_str[level][5] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n - 1, m - 1, level + 1, align_str);
+	}
+	if (op_matrix[n * col_size + m] & 4) // Substitution
+	{
+		align_str[level][0] = str1[n - 1];
+		align_str[level][1] = '\0';
+		strcat(align_str[level], " - ");
+		align_str[level][4] = str2[m - 1];
+		align_str[level][5] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n - 1, m - 1, level + 1, align_str);
+	}
+	if (op_matrix[n * col_size + m] & 2) // Delete
+	{
+		align_str[level][0] = str1[n - 1];
+		align_str[level][1] = '\0';
+		strcat(align_str[level], " - *");
+		align_str[level][5] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n - 1, m, level + 1, align_str);
+	}
+	if (op_matrix[n * col_size + m] & 1) // Insert
+	{
+		strcpy(align_str[level], "* - ");
+		align_str[level][4] = str2[m - 1];
+		align_str[level][5] = '\0';
+		backtrace_main(op_matrix, col_size, str1, str2, n, m - 1, level + 1, align_str);
+	}
+
+	if (level == 0)
+		count = 1;
 }
 
 // 강의 자료의 형식대로 op_matrix를 출력 (좌하단(1,1) -> 우상단(n, m))
@@ -163,25 +219,27 @@ int min_editdistance(char *str1, char *str2)
 	for (int i = 0; i < n + 1; i++)
 	{
 		d[i][0] = i;
-		op_matrix[i * (n + 1)] = -1;
+		op_matrix[i * (m + 1)] = DELETE_OP;
 	}
 
 	for (int i = 0; i < m + 1; i++)
 	{
 		d[0][i] = i;
-		op_matrix[i] = -1;
+		op_matrix[i] = INSERT_OP;
 	}
+
+	op_matrix[0] = 0;
 
 	for (int i = 1; i < n + 1; i++)
 	{
 		for (int j = 1; j < m + 1; j++)
 		{
-			op_matrix[i * (n + 1) + j] = 0;
+			op_matrix[i * (m + 1) + j] = 0;
 
 			if (str1[i - 1] == str2[j - 1])
 			{
 				d[i][j] = d[i - 1][j - 1];
-				op_matrix[i * (n + 1) + j] = MATCH_OP;
+				op_matrix[i * (m + 1) + j] = MATCH_OP;
 			}
 			else
 			{
@@ -190,7 +248,7 @@ int min_editdistance(char *str1, char *str2)
 					d[i][j] = __GetMin4(d[i][j - 1] + INSERT_COST, d[i - 1][j] + DELETE_COST, d[i - 1][j - 1] + SUBSTITUTE_COST, d[i - 2][j - 2] + TRANSPOSE_COST);
 					if (d[i][j] == d[i - 2][j - 2] + TRANSPOSE_COST)
 					{
-						op_matrix[i * (n + 1) + j] = TRANSPOSE_OP;
+						op_matrix[i * (m + 1) + j] = TRANSPOSE_OP;
 						continue;
 					}
 				}
@@ -201,23 +259,23 @@ int min_editdistance(char *str1, char *str2)
 
 				if (d[i][j] == d[i - 1][j - 1] + SUBSTITUTE_COST)
 				{
-					op_matrix[i * (n + 1) + j] += SUBSTITUTE_OP;
+					op_matrix[i * (m + 1) + j] += SUBSTITUTE_OP;
 				}
 				if (d[i][j] == d[i][j - 1] + INSERT_COST)
 				{
-					op_matrix[i * (n + 1) + j] += INSERT_OP;
+					op_matrix[i * (m + 1) + j] += INSERT_OP;
 				}
 				if (d[i][j] == d[i - 1][j] + DELETE_COST)
 				{
-					op_matrix[i * (n + 1) + j] += DELETE_OP;
+					op_matrix[i * (m + 1) + j] += DELETE_OP;
 				}
 			}
 		}
 	}
 
-	print_matrix(op_matrix, n + 1, str1, str2, n, m);
+	print_matrix(op_matrix, m + 1, str1, str2, n, m);
 
-	backtrace(op_matrix, n+1, str1, str2, n, m);
+	backtrace(op_matrix, m + 1, str1, str2, n, m);
 
 	return d[n][m];
 }
