@@ -1,4 +1,4 @@
-#define SHOW_STEP 1 // 제출시 0
+#define SHOW_STEP 0 // 제출시 0
 #define BALANCING 1 // 제출시 1
 
 #include <stdlib.h>
@@ -100,21 +100,19 @@ int main(int argc, char **argv)
 {
 	AVL_TREE *tree;
 	char str[1024];
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s FILE\n", argv[0]);
 		return 0;
 	}
-
 	// creates a null tree
 	tree = AVL_Create();
 
-	/* if (!tree)
+	if (!tree)
 	{
 		fprintf( stderr, "Cannot create tree!\n");
 		return 100;
-	} */
+	}
 
 	FILE *fp = fopen(argv[1], "rt");
 	if (fp == NULL)
@@ -194,6 +192,7 @@ AVL_TREE *AVL_Create(void)
 void AVL_Destroy(AVL_TREE *pTree)
 {
 	_destroy(pTree->root);
+	free(pTree);
 }
 static void _destroy(NODE *root)
 {
@@ -223,10 +222,12 @@ int AVL_Insert(AVL_TREE *pTree, char *data)
 	if (pTree->count == 0)
 	{
 		pTree->root = newNode;
+		(pTree->count)++;
 		return 1;
 	}
 
-	_insert(pTree->root, newNode);
+	pTree->root = _insert(pTree->root, newNode);
+	(pTree->count)++;
 	return 1;
 }
 
@@ -242,26 +243,60 @@ static NODE *_insert(NODE *root, NODE *newPtr)
 	{
 		if (root->left)
 		{
-			_insert(root->left, newPtr);
+			root->left = _insert(root->left, newPtr);
 		}
 		else
 		{
 			root->left = newPtr;
-			return;
 		}
 	}
 	else
 	{
 		if (root->right)
 		{
-			_insert(root->right, newPtr);
+			root->right = _insert(root->right, newPtr);
 		}
 		else
 		{
 			root->right = newPtr;
-			return;
 		}
 	}
+	root->height = getHeight(root);
+
+#if BALANCING
+	int bf = (root->left ? root->left->height : 0) - (root->right ? root->right->height : 0);
+
+	if (bf > 1)
+	{
+		int lSubBF = (root->left->left ? root->left->left->height : 0) - (root->left->right ? root->left->right->height : 0);
+
+		if (lSubBF > 0)
+		{
+			root = rotateRight(root);
+		}
+		else
+		{
+			root->left = rotateLeft(root->left);
+			root = rotateRight(root);
+		}
+	}
+	else if (bf < -1)
+	{
+		int rSubBF = (root->right->left ? root->right->left->height : 0) - (root->right->right ? root->right->right->height : 0);
+
+		if (rSubBF < 0)
+		{
+			root = rotateLeft(root);
+		}
+		else
+		{
+			root->right = rotateRight(root->right);
+			root = rotateLeft(root);
+		}
+	}
+#endif
+
+	return root;
 }
 
 static NODE *_makeNode(char *data)
@@ -283,7 +318,10 @@ char *AVL_Retrieve(AVL_TREE *pTree, char *key)
 {
 	NODE *ret = _retrieve(pTree->root, key);
 
-	return ret->data;
+	if (ret)
+		return ret->data;
+	else
+		return NULL;
 }
 
 /* internal function
@@ -293,23 +331,23 @@ char *AVL_Retrieve(AVL_TREE *pTree, char *key)
 */
 static NODE *_retrieve(NODE *root, char *key)
 {
-	int ret = strcmp(root->data, key);
+	int cmp = strcmp(root->data, key);
 
-	if (ret == 0)
+	if (cmp == 0)
 	{
 		return root;
 	}
-	else if (ret > 0)
+	else if (cmp > 0)
 	{
 		if (root->left)
-			_retrieve(root->left, key);
+			return _retrieve(root->left, key);
 		else
 			return NULL;
 	}
 	else
 	{
 		if (root->right)
-			_retrieve(root->right, key);
+			return _retrieve(root->right, key);
 		else
 			return NULL;
 	}
@@ -336,7 +374,7 @@ static void _traverse(NODE *root)
  */
 void printTree(AVL_TREE *pTree)
 {
-	_inorder_print(pTree->root, 0);
+	_infix_print(pTree->root, 0);
 }
 /* internal traversal function
  */
@@ -379,6 +417,14 @@ static int getHeight(NODE *root)
 */
 static NODE *rotateRight(NODE *root)
 {
+	NODE *l = root->left;
+
+	root->left = l->right;
+	l->right = root;
+	root->height = getHeight(root);
+	l->height = getHeight(l);
+
+	return l;
 }
 
 /* internal function
@@ -388,4 +434,12 @@ static NODE *rotateRight(NODE *root)
 */
 static NODE *rotateLeft(NODE *root)
 {
+	NODE *r = root->right;
+
+	root->right = r->left;
+	r->left = root;
+	root->height = getHeight(root);
+	r->height = getHeight(r);
+
+	return r;
 }
