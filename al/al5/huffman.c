@@ -100,11 +100,19 @@ int read_chars(FILE *fp, int ch_freq[])
 // 파일로부터 문자별 빈도(256개)를 읽어서 ch_freq에 저장
 void get_char_freq(FILE *fp, int ch_freq[])
 {
+	for (int i = 0; i < 256; i++)
+	{
+		fread(&(ch_freq[i]), sizeof(int), 1, fp);
+	}
 }
 
 // 허프만 코드에 대한 메모리 해제
 void free_huffman_code(char *codes[])
 {
+	for (int i = 0; i < 256; i++)
+	{
+		free(codes[i]);
+	}
 }
 
 // 허프만 트리를 생성
@@ -145,6 +153,15 @@ tNode *make_huffman_tree(int ch_freq[])
 // 허프만 트리 메모리 해제
 void destroyTree(tNode *root)
 {
+	if (!root)
+		return;
+
+	if (root->left)
+		destroyTree(root->left);
+	if (root->right)
+		destroyTree(root->right);
+
+	free(root);
 }
 
 // 입력 텍스트 파일(infp)을 허프만 코드를 이용하여 출력 파일(outfp)로 인코딩
@@ -156,21 +173,22 @@ int encoding(char *codes[], int ch_freq[], FILE *infp, FILE *outfp)
 		fwrite(&(ch_freq[i]), 4, 1, outfp);
 	}
 
-	int cnt = 0;
+	int cnt;
+	int byte_cnt = 0;
 	int fullness = 0;
 	unsigned char byte, buffer = 0;
 
 	while (fread(&byte, sizeof(unsigned char), 1, infp) == 1)
 	{
-		printf("%s", codes[byte]);
 		for (int i = 0; i < strlen(codes[byte]); i++)
 		{
 			buffer |= (codes[byte][i] - '0') << (7 - fullness);
 			fullness++;
+			cnt++;
 			if (fullness == 8)
 			{
 				fputc(buffer, outfp);
-				cnt++;
+				byte_cnt++;
 				fullness = 0;
 				buffer = 0;
 			}
@@ -180,13 +198,45 @@ int encoding(char *codes[], int ch_freq[], FILE *infp, FILE *outfp)
 	if (fullness != 0)
 	{
 		fputc(buffer, outfp);
-		cnt++;
+		byte_cnt++;
 	}
 
-	return cnt;
+	fwrite(&cnt, 4, 1, outfp);
+
+	return byte_cnt;
 }
 
 // 입력 파일(infp)을 허프만 트리를 이용하여 텍스트 파일(outfp)로 디코딩
 void decoding(tNode *root, FILE *infp, FILE *outfp)
 {
+	int cnt;
+	char byte, buffer;
+	tNode *curPtr = root;
+	fseek(infp, -sizeof(int), SEEK_END);
+	fread(&cnt, sizeof(int), 1, infp);
+	fseek(infp, sizeof(int) * 256, SEEK_SET);
+
+	while (fread(&byte, sizeof(char), 1, infp) == 1 && cnt > 0)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			if (cnt-- < 0)
+				return;
+			buffer = byte & 1 << (7 - i);
+			if (buffer == 0)
+			{
+				curPtr = curPtr->left;
+			}
+			else
+			{
+				curPtr = curPtr->right;
+			}
+
+			if (curPtr->data != 0)
+			{
+				fputc(curPtr->data, outfp);
+				curPtr = root;
+			}
+		}
+	}
 }
