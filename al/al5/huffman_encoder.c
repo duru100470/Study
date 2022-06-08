@@ -47,7 +47,7 @@ int main( int argc, char **argv)
 	fclose( infp);
 
 	// 문자별 빈도 출력 (only for debugging)
-	//print_char_freq( ch_freq);
+	print_char_freq( ch_freq);
 	
 	// 허프만 트리 생성
 	huffman_tree = make_huffman_tree( ch_freq);
