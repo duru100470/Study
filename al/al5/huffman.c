@@ -36,7 +36,7 @@ void print_huffman_code(char *codes[])
 // traverse_tree 함수 호출
 void make_huffman_code(tNode *root, char *codes[])
 {
-	char code[128];
+	char code[256];
 
 	traverse_tree(root, code, 0, codes);
 }
@@ -47,6 +47,23 @@ void make_huffman_code(tNode *root, char *codes[])
 // make_huffman_code 함수에서 호출
 static void traverse_tree(tNode *root, char *code, int depth, char *codes[])
 {
+	if (root->left == NULL && root->right == NULL)
+	{
+		code[depth] = 0;
+		codes[root->data] = strdup(code);
+		return;
+	}
+
+	if (root->left)
+	{
+		code[depth] = '0';
+		traverse_tree(root->left, code, depth + 1, codes);
+	}
+	if (root->right)
+	{
+		code[depth] = '1';
+		traverse_tree(root->right, code, depth + 1, codes);
+	}
 }
 
 // 새로운 노드를 생성
@@ -68,6 +85,16 @@ static tNode *newNode(unsigned char data, int freq)
 // return value : 파일에서 읽은 바이트 수
 int read_chars(FILE *fp, int ch_freq[])
 {
+	int cnt = 0;
+	unsigned char byte;
+
+	while (fread(&byte, sizeof(unsigned char), 1, fp) == 1)
+	{
+		ch_freq[byte]++;
+		cnt++;
+	}
+
+	return cnt;
 }
 
 // 파일로부터 문자별 빈도(256개)를 읽어서 ch_freq에 저장
@@ -75,19 +102,8 @@ void get_char_freq(FILE *fp, int ch_freq[])
 {
 }
 
-// 허프만 트리로부터 허프만 코드를 생성
-// traverse_tree 함수 호출
-void make_huffman_code(tNode *root, char *codes[])
-{
-}
-
 // 허프만 코드에 대한 메모리 해제
 void free_huffman_code(char *codes[])
-{
-}
-
-// 허프만 코드를 화면에 출력
-void print_huffman_code(char *codes[])
 {
 }
 
@@ -102,6 +118,28 @@ void print_huffman_code(char *codes[])
 // return value: 트리의 root 노드의 포인터
 tNode *make_huffman_tree(int ch_freq[])
 {
+	HEAP *heap = heapCreate(256);
+	for (int i = 0; i < 256; i++)
+	{
+		tNode *node = newNode(i, ch_freq[i]);
+		heapInsert(heap, node);
+	}
+
+	while (heap->last > 0)
+	{
+		tNode *left = heapDelete(heap);
+		tNode *right = heapDelete(heap);
+		tNode *node = newNode(0, left->freq + right->freq);
+
+		node->left = left;
+		node->right = right;
+
+		heapInsert(heap, node);
+	}
+
+	tNode *root = heapDelete(heap);
+	heapDestroy(heap);
+	return root;
 }
 
 // 허프만 트리 메모리 해제
@@ -113,6 +151,39 @@ void destroyTree(tNode *root)
 // return value : 인코딩된 텍스트의 바이트 수 (파일 크기와는 다름)
 int encoding(char *codes[], int ch_freq[], FILE *infp, FILE *outfp)
 {
+	for (int i = 0; i < 256; i++)
+	{
+		fwrite(&(ch_freq[i]), 4, 1, outfp);
+	}
+
+	int cnt = 0;
+	int fullness = 0;
+	unsigned char byte, buffer = 0;
+
+	while (fread(&byte, sizeof(unsigned char), 1, infp) == 1)
+	{
+		printf("%s", codes[byte]);
+		for (int i = 0; i < strlen(codes[byte]); i++)
+		{
+			buffer |= (codes[byte][i] - '0') << (7 - fullness);
+			fullness++;
+			if (fullness == 8)
+			{
+				fputc(buffer, outfp);
+				cnt++;
+				fullness = 0;
+				buffer = 0;
+			}
+		}
+	}
+
+	if (fullness != 0)
+	{
+		fputc(buffer, outfp);
+		cnt++;
+	}
+
+	return cnt;
 }
 
 // 입력 파일(infp)을 허프만 트리를 이용하여 텍스트 파일(outfp)로 디코딩
