@@ -1,5 +1,5 @@
 Timing Analyzer report for top_seg7
-Thu Jun 02 04:54:15 2022
+Sun Jun 12 03:39:18 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -99,14 +99,14 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.07        ;
+; Average used               ; 1.08        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   2.3%      ;
-;     Processor 3            ;   2.1%      ;
-;     Processor 4            ;   2.1%      ;
+;     Processor 2            ;   2.7%      ;
+;     Processor 3            ;   2.5%      ;
+;     Processor 4            ;   2.5%      ;
 +----------------------------+-------------+
 
 
@@ -126,9 +126,9 @@ refer to the applicable agreement for further details.
 +------------+-----------------+--------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name         ; Note ;
 +------------+-----------------+--------------------+------+
-; 156.67 MHz ; 156.67 MHz      ; clk                ;      ;
-; 193.65 MHz ; 193.65 MHz      ; counter:u1|q[1]    ;      ;
-; 440.53 MHz ; 440.53 MHz      ; clk_dll:u0|out_clk ;      ;
+; 163.72 MHz ; 163.72 MHz      ; counter:u1|q[1]    ;      ;
+; 166.67 MHz ; 166.67 MHz      ; clk                ;      ;
+; 430.48 MHz ; 430.48 MHz      ; clk_dll:u0|out_clk ;      ;
 +------------+-----------------+--------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -144,21 +144,21 @@ HTML report is unavailable in plain text report export.
 +--------------------+--------+---------------+
 ; Clock              ; Slack  ; End Point TNS ;
 +--------------------+--------+---------------+
-; clk                ; -5.383 ; -101.156      ;
-; counter:u1|q[1]    ; -2.266 ; -13.592       ;
-; clk_dll:u0|out_clk ; -1.270 ; -7.316        ;
+; clk                ; -5.000 ; -103.208      ;
+; counter:u1|q[1]    ; -2.678 ; -17.869       ;
+; clk_dll:u0|out_clk ; -1.323 ; -11.538       ;
 +--------------------+--------+---------------+
 
 
-+---------------------------------------------+
-; Slow 1100mV 85C Model Hold Summary          ;
-+--------------------+--------+---------------+
-; Clock              ; Slack  ; End Point TNS ;
-+--------------------+--------+---------------+
-; counter:u1|q[1]    ; -0.237 ; -0.760        ;
-; clk_dll:u0|out_clk ; 0.369  ; 0.000         ;
-; clk                ; 0.396  ; 0.000         ;
-+--------------------+--------+---------------+
++--------------------------------------------+
+; Slow 1100mV 85C Model Hold Summary         ;
++--------------------+-------+---------------+
+; Clock              ; Slack ; End Point TNS ;
++--------------------+-------+---------------+
+; clk_dll:u0|out_clk ; 0.383 ; 0.000         ;
+; clk                ; 0.452 ; 0.000         ;
+; counter:u1|q[1]    ; 0.781 ; 0.000         ;
++--------------------+-------+---------------+
 
 
 ------------------------------------------
@@ -178,9 +178,9 @@ No paths to report.
 +--------------------+--------+---------------------+
 ; Clock              ; Slack  ; End Point TNS       ;
 +--------------------+--------+---------------------+
-; clk                ; -0.405 ; -20.540             ;
-; clk_dll:u0|out_clk ; -0.394 ; -4.112              ;
-; counter:u1|q[1]    ; 0.381  ; 0.000               ;
+; clk                ; -0.532 ; -21.641             ;
+; clk_dll:u0|out_clk ; -0.394 ; -5.702              ;
+; counter:u1|q[1]    ; 0.399  ; 0.000               ;
 +--------------------+--------+---------------------+
 
 
@@ -195,9 +195,9 @@ No synchronizer chains to report.
 +------------+-----------------+--------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name         ; Note ;
 +------------+-----------------+--------------------+------+
-; 154.13 MHz ; 154.13 MHz      ; clk                ;      ;
-; 196.16 MHz ; 196.16 MHz      ; counter:u1|q[1]    ;      ;
-; 436.68 MHz ; 436.68 MHz      ; clk_dll:u0|out_clk ;      ;
+; 162.81 MHz ; 162.81 MHz      ; counter:u1|q[1]    ;      ;
+; 163.0 MHz  ; 163.0 MHz       ; clk                ;      ;
+; 432.15 MHz ; 432.15 MHz      ; clk_dll:u0|out_clk ;      ;
 +------------+-----------------+--------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -207,21 +207,21 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------+--------+---------------+
 ; Clock              ; Slack  ; End Point TNS ;
 +--------------------+--------+---------------+
-; clk                ; -5.488 ; -100.554      ;
-; counter:u1|q[1]    ; -2.238 ; -13.406       ;
-; clk_dll:u0|out_clk ; -1.290 ; -7.351        ;
+; clk                ; -5.135 ; -99.054       ;
+; counter:u1|q[1]    ; -2.659 ; -17.412       ;
+; clk_dll:u0|out_clk ; -1.314 ; -11.440       ;
 +--------------------+--------+---------------+
 
 
-+---------------------------------------------+
-; Slow 1100mV 0C Model Hold Summary           ;
-+--------------------+--------+---------------+
-; Clock              ; Slack  ; End Point TNS ;
-+--------------------+--------+---------------+
-; counter:u1|q[1]    ; -0.330 ; -1.124        ;
-; clk_dll:u0|out_clk ; 0.366  ; 0.000         ;
-; clk                ; 0.393  ; 0.000         ;
-+--------------------+--------+---------------+
++--------------------------------------------+
+; Slow 1100mV 0C Model Hold Summary          ;
++--------------------+-------+---------------+
+; Clock              ; Slack ; End Point TNS ;
++--------------------+-------+---------------+
+; clk_dll:u0|out_clk ; 0.358 ; 0.000         ;
+; clk                ; 0.451 ; 0.000         ;
+; counter:u1|q[1]    ; 0.589 ; 0.000         ;
++--------------------+-------+---------------+
 
 
 -----------------------------------------
@@ -241,9 +241,9 @@ No paths to report.
 +--------------------+--------+--------------------+
 ; Clock              ; Slack  ; End Point TNS      ;
 +--------------------+--------+--------------------+
-; clk                ; -0.427 ; -22.249            ;
-; clk_dll:u0|out_clk ; -0.394 ; -4.064             ;
-; counter:u1|q[1]    ; 0.362  ; 0.000              ;
+; clk                ; -0.544 ; -23.405            ;
+; clk_dll:u0|out_clk ; -0.394 ; -5.617             ;
+; counter:u1|q[1]    ; 0.441  ; 0.000              ;
 +--------------------+--------+--------------------+
 
 
@@ -258,21 +258,21 @@ No synchronizer chains to report.
 +--------------------+--------+---------------+
 ; Clock              ; Slack  ; End Point TNS ;
 +--------------------+--------+---------------+
-; clk                ; -3.375 ; -44.092       ;
-; counter:u1|q[1]    ; -1.303 ; -6.740        ;
-; clk_dll:u0|out_clk ; -0.462 ; -2.337        ;
+; clk                ; -3.368 ; -46.751       ;
+; counter:u1|q[1]    ; -1.488 ; -9.489        ;
+; clk_dll:u0|out_clk ; -0.605 ; -4.210        ;
 +--------------------+--------+---------------+
 
 
-+---------------------------------------------+
-; Fast 1100mV 85C Model Hold Summary          ;
-+--------------------+--------+---------------+
-; Clock              ; Slack  ; End Point TNS ;
-+--------------------+--------+---------------+
-; counter:u1|q[1]    ; -0.352 ; -1.494        ;
-; clk_dll:u0|out_clk ; 0.181  ; 0.000         ;
-; clk                ; 0.213  ; 0.000         ;
-+--------------------+--------+---------------+
++--------------------------------------------+
+; Fast 1100mV 85C Model Hold Summary         ;
++--------------------+-------+---------------+
+; Clock              ; Slack ; End Point TNS ;
++--------------------+-------+---------------+
+; clk_dll:u0|out_clk ; 0.171 ; 0.000         ;
+; clk                ; 0.246 ; 0.000         ;
+; counter:u1|q[1]    ; 0.314 ; 0.000         ;
++--------------------+-------+---------------+
 
 
 ------------------------------------------
@@ -292,9 +292,9 @@ No paths to report.
 +--------------------+--------+---------------------+
 ; Clock              ; Slack  ; End Point TNS       ;
 +--------------------+--------+---------------------+
-; clk                ; -0.431 ; -3.759              ;
-; clk_dll:u0|out_clk ; 0.152  ; 0.000               ;
-; counter:u1|q[1]    ; 0.387  ; 0.000               ;
+; clk                ; -0.539 ; -4.348              ;
+; clk_dll:u0|out_clk ; 0.154  ; 0.000               ;
+; counter:u1|q[1]    ; 0.459  ; 0.000               ;
 +--------------------+--------+---------------------+
 
 
@@ -309,21 +309,21 @@ No synchronizer chains to report.
 +--------------------+--------+---------------+
 ; Clock              ; Slack  ; End Point TNS ;
 +--------------------+--------+---------------+
-; clk                ; -2.843 ; -38.182       ;
-; counter:u1|q[1]    ; -1.142 ; -5.977        ;
-; clk_dll:u0|out_clk ; -0.392 ; -1.870        ;
+; clk                ; -2.839 ; -38.988       ;
+; counter:u1|q[1]    ; -1.316 ; -8.394        ;
+; clk_dll:u0|out_clk ; -0.502 ; -3.543        ;
 +--------------------+--------+---------------+
 
 
-+---------------------------------------------+
-; Fast 1100mV 0C Model Hold Summary           ;
-+--------------------+--------+---------------+
-; Clock              ; Slack  ; End Point TNS ;
-+--------------------+--------+---------------+
-; counter:u1|q[1]    ; -0.363 ; -1.669        ;
-; clk_dll:u0|out_clk ; 0.164  ; 0.000         ;
-; clk                ; 0.200  ; 0.000         ;
-+--------------------+--------+---------------+
++--------------------------------------------+
+; Fast 1100mV 0C Model Hold Summary          ;
++--------------------+-------+---------------+
+; Clock              ; Slack ; End Point TNS ;
++--------------------+-------+---------------+
+; clk_dll:u0|out_clk ; 0.139 ; 0.000         ;
+; counter:u1|q[1]    ; 0.194 ; 0.000         ;
+; clk                ; 0.233 ; 0.000         ;
++--------------------+-------+---------------+
 
 
 -----------------------------------------
@@ -343,9 +343,9 @@ No paths to report.
 +--------------------+--------+--------------------+
 ; Clock              ; Slack  ; End Point TNS      ;
 +--------------------+--------+--------------------+
-; clk                ; -0.438 ; -3.835             ;
-; clk_dll:u0|out_clk ; 0.155  ; 0.000              ;
-; counter:u1|q[1]    ; 0.394  ; 0.000              ;
+; clk                ; -0.532 ; -4.304             ;
+; clk_dll:u0|out_clk ; 0.158  ; 0.000              ;
+; counter:u1|q[1]    ; 0.473  ; 0.000              ;
 +--------------------+--------+--------------------+
 
 
@@ -355,20 +355,20 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                ;
-+---------------------+----------+--------+----------+---------+---------------------+
-; Clock               ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
-+---------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack    ; -5.488   ; -0.363 ; N/A      ; N/A     ; -0.438              ;
-;  clk                ; -5.488   ; 0.200  ; N/A      ; N/A     ; -0.438              ;
-;  clk_dll:u0|out_clk ; -1.290   ; 0.164  ; N/A      ; N/A     ; -0.394              ;
-;  counter:u1|q[1]    ; -2.266   ; -0.363 ; N/A      ; N/A     ; 0.362               ;
-; Design-wide TNS     ; -122.064 ; -1.669 ; 0.0      ; 0.0     ; -26.313             ;
-;  clk                ; -101.156 ; 0.000  ; N/A      ; N/A     ; -22.249             ;
-;  clk_dll:u0|out_clk ; -7.351   ; 0.000  ; N/A      ; N/A     ; -4.112              ;
-;  counter:u1|q[1]    ; -13.592  ; -1.669 ; N/A      ; N/A     ; 0.000               ;
-+---------------------+----------+--------+----------+---------+---------------------+
++-----------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                               ;
++---------------------+----------+-------+----------+---------+---------------------+
+; Clock               ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++---------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack    ; -5.135   ; 0.139 ; N/A      ; N/A     ; -0.544              ;
+;  clk                ; -5.135   ; 0.233 ; N/A      ; N/A     ; -0.544              ;
+;  clk_dll:u0|out_clk ; -1.323   ; 0.139 ; N/A      ; N/A     ; -0.394              ;
+;  counter:u1|q[1]    ; -2.678   ; 0.194 ; N/A      ; N/A     ; 0.399               ;
+; Design-wide TNS     ; -132.615 ; 0.0   ; 0.0      ; 0.0     ; -29.022             ;
+;  clk                ; -103.208 ; 0.000 ; N/A      ; N/A     ; -23.405             ;
+;  clk_dll:u0|out_clk ; -11.538  ; 0.000 ; N/A      ; N/A     ; -5.702              ;
+;  counter:u1|q[1]    ; -17.869  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
++---------------------+----------+-------+----------+---------+---------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -461,9 +461,9 @@ No synchronizer chains to report.
 +--------------------+--------------------+----------+----------+----------+----------+
 ; From Clock         ; To Clock           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +--------------------+--------------------+----------+----------+----------+----------+
-; clk                ; clk                ; 1490     ; 0        ; 0        ; 0        ;
+; clk                ; clk                ; 1557     ; 0        ; 0        ; 0        ;
 ; clk_dll:u0|out_clk ; clk                ; 1        ; 1        ; 0        ; 0        ;
-; clk_dll:u0|out_clk ; clk_dll:u0|out_clk ; 16       ; 0        ; 0        ; 0        ;
+; clk_dll:u0|out_clk ; clk_dll:u0|out_clk ; 24       ; 0        ; 0        ; 0        ;
 ; clk_dll:u0|out_clk ; counter:u1|q[1]    ; 18       ; 0        ; 0        ; 0        ;
 ; counter:u1|q[1]    ; counter:u1|q[1]    ; 7        ; 7        ; 0        ; 0        ;
 +--------------------+--------------------+----------+----------+----------+----------+
@@ -475,9 +475,9 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +--------------------+--------------------+----------+----------+----------+----------+
 ; From Clock         ; To Clock           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +--------------------+--------------------+----------+----------+----------+----------+
-; clk                ; clk                ; 1490     ; 0        ; 0        ; 0        ;
+; clk                ; clk                ; 1557     ; 0        ; 0        ; 0        ;
 ; clk_dll:u0|out_clk ; clk                ; 1        ; 1        ; 0        ; 0        ;
-; clk_dll:u0|out_clk ; clk_dll:u0|out_clk ; 16       ; 0        ; 0        ; 0        ;
+; clk_dll:u0|out_clk ; clk_dll:u0|out_clk ; 24       ; 0        ; 0        ; 0        ;
 ; clk_dll:u0|out_clk ; counter:u1|q[1]    ; 18       ; 0        ; 0        ; 0        ;
 ; counter:u1|q[1]    ; counter:u1|q[1]    ; 7        ; 7        ; 0        ; 0        ;
 +--------------------+--------------------+----------+----------+----------+----------+
@@ -504,7 +504,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 1     ; 1    ;
-; Unconstrained Input Port Paths  ; 47    ; 47   ;
+; Unconstrained Input Port Paths  ; 52    ; 52   ;
 ; Unconstrained Output Ports      ; 7     ; 7    ;
 ; Unconstrained Output Port Paths ; 7     ; 7    ;
 +---------------------------------+-------+------+
@@ -575,7 +575,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Jun 02 04:54:10 2022
+    Info: Processing started: Sun Jun 12 03:39:13 2022
 Info: Command: quartus_sta top_seg7 -c top_seg7
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -595,107 +595,107 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -5.383
+Info (332146): Worst-case setup slack is -5.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.383            -101.156 clk 
-    Info (332119):    -2.266             -13.592 counter:u1|q[1] 
-    Info (332119):    -1.270              -7.316 clk_dll:u0|out_clk 
-Info (332146): Worst-case hold slack is -0.237
+    Info (332119):    -5.000            -103.208 clk 
+    Info (332119):    -2.678             -17.869 counter:u1|q[1] 
+    Info (332119):    -1.323             -11.538 clk_dll:u0|out_clk 
+Info (332146): Worst-case hold slack is 0.383
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.237              -0.760 counter:u1|q[1] 
-    Info (332119):     0.369               0.000 clk_dll:u0|out_clk 
-    Info (332119):     0.396               0.000 clk 
+    Info (332119):     0.383               0.000 clk_dll:u0|out_clk 
+    Info (332119):     0.452               0.000 clk 
+    Info (332119):     0.781               0.000 counter:u1|q[1] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.405
+Info (332146): Worst-case minimum pulse width slack is -0.532
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.405             -20.540 clk 
-    Info (332119):    -0.394              -4.112 clk_dll:u0|out_clk 
-    Info (332119):     0.381               0.000 counter:u1|q[1] 
+    Info (332119):    -0.532             -21.641 clk 
+    Info (332119):    -0.394              -5.702 clk_dll:u0|out_clk 
+    Info (332119):     0.399               0.000 counter:u1|q[1] 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -5.488
+Info (332146): Worst-case setup slack is -5.135
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.488            -100.554 clk 
-    Info (332119):    -2.238             -13.406 counter:u1|q[1] 
-    Info (332119):    -1.290              -7.351 clk_dll:u0|out_clk 
-Info (332146): Worst-case hold slack is -0.330
+    Info (332119):    -5.135             -99.054 clk 
+    Info (332119):    -2.659             -17.412 counter:u1|q[1] 
+    Info (332119):    -1.314             -11.440 clk_dll:u0|out_clk 
+Info (332146): Worst-case hold slack is 0.358
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.330              -1.124 counter:u1|q[1] 
-    Info (332119):     0.366               0.000 clk_dll:u0|out_clk 
-    Info (332119):     0.393               0.000 clk 
+    Info (332119):     0.358               0.000 clk_dll:u0|out_clk 
+    Info (332119):     0.451               0.000 clk 
+    Info (332119):     0.589               0.000 counter:u1|q[1] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.427
+Info (332146): Worst-case minimum pulse width slack is -0.544
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.427             -22.249 clk 
-    Info (332119):    -0.394              -4.064 clk_dll:u0|out_clk 
-    Info (332119):     0.362               0.000 counter:u1|q[1] 
+    Info (332119):    -0.544             -23.405 clk 
+    Info (332119):    -0.394              -5.617 clk_dll:u0|out_clk 
+    Info (332119):     0.441               0.000 counter:u1|q[1] 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -3.375
+Info (332146): Worst-case setup slack is -3.368
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.375             -44.092 clk 
-    Info (332119):    -1.303              -6.740 counter:u1|q[1] 
-    Info (332119):    -0.462              -2.337 clk_dll:u0|out_clk 
-Info (332146): Worst-case hold slack is -0.352
+    Info (332119):    -3.368             -46.751 clk 
+    Info (332119):    -1.488              -9.489 counter:u1|q[1] 
+    Info (332119):    -0.605              -4.210 clk_dll:u0|out_clk 
+Info (332146): Worst-case hold slack is 0.171
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.352              -1.494 counter:u1|q[1] 
-    Info (332119):     0.181               0.000 clk_dll:u0|out_clk 
-    Info (332119):     0.213               0.000 clk 
+    Info (332119):     0.171               0.000 clk_dll:u0|out_clk 
+    Info (332119):     0.246               0.000 clk 
+    Info (332119):     0.314               0.000 counter:u1|q[1] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.431
+Info (332146): Worst-case minimum pulse width slack is -0.539
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.431              -3.759 clk 
-    Info (332119):     0.152               0.000 clk_dll:u0|out_clk 
-    Info (332119):     0.387               0.000 counter:u1|q[1] 
+    Info (332119):    -0.539              -4.348 clk 
+    Info (332119):     0.154               0.000 clk_dll:u0|out_clk 
+    Info (332119):     0.459               0.000 counter:u1|q[1] 
 Info: Analyzing Fast 1100mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.843
+Info (332146): Worst-case setup slack is -2.839
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.843             -38.182 clk 
-    Info (332119):    -1.142              -5.977 counter:u1|q[1] 
-    Info (332119):    -0.392              -1.870 clk_dll:u0|out_clk 
-Info (332146): Worst-case hold slack is -0.363
+    Info (332119):    -2.839             -38.988 clk 
+    Info (332119):    -1.316              -8.394 counter:u1|q[1] 
+    Info (332119):    -0.502              -3.543 clk_dll:u0|out_clk 
+Info (332146): Worst-case hold slack is 0.139
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.363              -1.669 counter:u1|q[1] 
-    Info (332119):     0.164               0.000 clk_dll:u0|out_clk 
-    Info (332119):     0.200               0.000 clk 
+    Info (332119):     0.139               0.000 clk_dll:u0|out_clk 
+    Info (332119):     0.194               0.000 counter:u1|q[1] 
+    Info (332119):     0.233               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.438
+Info (332146): Worst-case minimum pulse width slack is -0.532
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.438              -3.835 clk 
-    Info (332119):     0.155               0.000 clk_dll:u0|out_clk 
-    Info (332119):     0.394               0.000 counter:u1|q[1] 
+    Info (332119):    -0.532              -4.304 clk 
+    Info (332119):     0.158               0.000 clk_dll:u0|out_clk 
+    Info (332119):     0.473               0.000 counter:u1|q[1] 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 7 warnings
     Info: Peak virtual memory: 5107 megabytes
-    Info: Processing ended: Thu Jun 02 04:54:15 2022
+    Info: Processing ended: Sun Jun 12 03:39:18 2022
     Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05
 

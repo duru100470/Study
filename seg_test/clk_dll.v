@@ -17,7 +17,7 @@ module clk_dll(rst, clk, out_clk);
     begin  
       cnt_clk <= cnt_clk+1;
             
-      if(cnt_clk == 24999999)
+      if(cnt_clk == 249999)
       //  if(cnt_clk == 24)
         cnt_clk <=0;
       else if(cnt_clk==0)
