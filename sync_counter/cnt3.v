@@ -2,7 +2,7 @@ module cnt3 (rst, clk, out, out_clk);
     input rst, clk;
     output [3:0] out;
     output out_clk;
-    reg [3:0] out;
+    reg [3:0] out, tmp;
     reg [9:0] cnt_clk;
     reg out_clk;
 
@@ -23,14 +23,16 @@ module cnt3 (rst, clk, out, out_clk);
     end 
 
     always@(posedge out_clk or negedge rst) begin
-        if(!rst) begin
+        if (!rst) begin
             out <= 0;
+            tmp <= 0;
         end
-        else begin  
-            out <= out + 1;
-            if (out == 10) begin
-                out <= 0;
+        else begin
+            tmp <= tmp + 1;
+            if (tmp == 16) begin
+                tmp <= 0;
             end
+            out <= tmp;
         end
     end 
 endmodule
