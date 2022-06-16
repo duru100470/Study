@@ -19,7 +19,7 @@ module state_machine(rst,
         else begin
             state <= next_state;
             cnt_clk <= cnt_clk + 1;
-            if (cnt_clk >= 4999 or next_state != STATE_END)
+            if (cnt_clk >= 4999 || next_state != STATE_END)
                 cnt_clk <= 0;
         end
     end
