@@ -21,6 +21,8 @@ module top_doorlock (clk,
 
     clk_dll u0(rst, clk, out_clk);
     state_machine u1(rst, out_clk, ps_start, ps_end, state);
-    doorlock u2(state, ps_num, door_open, state_out, seg_out);
+    doorlock u2(state, ps_num, door_open, seg_out);
     seg7 u3(seg_out, w1, w2, w3, w4, w5, w6);
+
+    assign state_out = state;
 endmodule

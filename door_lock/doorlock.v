@@ -1,8 +1,8 @@
-module doorlock(state, ps_num, door_open, state_out, seg_out);
+module doorlock(state, ps_num, door_open, seg_out);
     input [1:0] state;
     input [3:0] ps_num;
     output door_open;
-    output [1:0] state_out, seg_out;
+    output [1:0] seg_out;
 
     reg door_open;
     reg [1:0] state_out, seg_out;
@@ -26,6 +26,4 @@ module doorlock(state, ps_num, door_open, state_out, seg_out);
                 end
         endcase
     end
-
-    assign state_out = state;
 endmodule
