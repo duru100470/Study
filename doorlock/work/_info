@@ -1,0 +1,157 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/18.1
+vclk_dll
+Z0 !s110 1655437957
+!i10b 1
+!s100 ?Ib>75X0DzD;Dfo]WL=H20
+I0[667:YV]:XhFgHJS_m>m2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dF:/Git_workspace/COSE221/doorlock
+w1655437708
+8F:/Git_workspace/COSE221/doorlock/clk_dll.v
+FF:/Git_workspace/COSE221/doorlock/clk_dll.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1655437957.000000
+!s107 F:/Git_workspace/COSE221/doorlock/clk_dll.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/clk_dll.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vdoorlock
+R0
+!i10b 1
+!s100 8Cb<Z0D98IAM?UodkXnX`1
+I=ca1V=X2IeelZbo17_89E2
+R1
+R2
+w1655437847
+8F:/Git_workspace/COSE221/doorlock/doorlock.v
+FF:/Git_workspace/COSE221/doorlock/doorlock.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 F:/Git_workspace/COSE221/doorlock/doorlock.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/doorlock.v|
+!i113 1
+R5
+R6
+vseg7
+R0
+!i10b 1
+!s100 g0LRAY>=DB;o>fUhCIOYJ0
+I_kR`iVaNF>>TL3zFO`QHF1
+R1
+R2
+w1655394795
+8F:/Git_workspace/COSE221/doorlock/seg7.v
+FF:/Git_workspace/COSE221/doorlock/seg7.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 F:/Git_workspace/COSE221/doorlock/seg7.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/seg7.v|
+!i113 1
+R5
+R6
+vstate_machine
+R0
+!i10b 1
+!s100 _JzRYmUaWzmP4PHchoPh@1
+IPd7m8<IAzh_QLndzgVVA03
+R1
+R2
+w1655437719
+8F:/Git_workspace/COSE221/doorlock/state_machine.v
+FF:/Git_workspace/COSE221/doorlock/state_machine.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 F:/Git_workspace/COSE221/doorlock/state_machine.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/state_machine.v|
+!i113 1
+R5
+R6
+vtb_clk
+R0
+!i10b 1
+!s100 3R3mOiQ3MPW`Vz@^6_DI[3
+I==;n5P0A:V;aL[aHC[oOZ1
+R1
+R2
+w1655394913
+8F:/Git_workspace/COSE221/doorlock/tb_clk_dll.v
+FF:/Git_workspace/COSE221/doorlock/tb_clk_dll.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+!s107 F:/Git_workspace/COSE221/doorlock/tb_clk_dll.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/tb_clk_dll.v|
+!i113 1
+R5
+R6
+vtb_top
+R0
+!i10b 1
+!s100 D>aEEIl8Nd14Zfzdj:Iid0
+IB[:;8?f;Znn@meZb1e0ho3
+R1
+R2
+w1655437949
+8F:/Git_workspace/COSE221/doorlock/tb_top.v
+FF:/Git_workspace/COSE221/doorlock/tb_top.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+!s107 F:/Git_workspace/COSE221/doorlock/tb_top.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/tb_top.v|
+!i113 1
+R5
+R6
+vtop_doorlock
+R0
+!i10b 1
+!s100 RZl<`CaNE5Ca[l0]hkb1P0
+IL4^oQ8@=Yi9fF^nZ88bF53
+R1
+R2
+w1655437274
+8F:/Git_workspace/COSE221/doorlock/top_doorlock.v
+FF:/Git_workspace/COSE221/doorlock/top_doorlock.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 F:/Git_workspace/COSE221/doorlock/top_doorlock.v|
+!s90 -reportprogress|300|-work|work|-stats=none|F:/Git_workspace/COSE221/doorlock/top_doorlock.v|
+!i113 1
+R5
+R6

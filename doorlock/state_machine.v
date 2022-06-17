@@ -10,6 +10,7 @@ module state_machine(rst,
     parameter STATE_IDLE  = 2'b00;
     parameter STATE_START = 2'b01;
     parameter STATE_END   = 2'b10;
+    parameter DELAY = 4999;
     
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
@@ -34,7 +35,7 @@ module state_machine(rst,
             next_state <= STATE_END;
             else
             next_state <= STATE_START;
-            STATE_END: if (cnt_clk == 5000)
+            STATE_END: if (cnt_clk == DELAY)
             next_state <= STATE_IDLE;
             else
             next_state <= STATE_END;

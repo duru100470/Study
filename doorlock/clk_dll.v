@@ -6,6 +6,7 @@ module clk_dll(rst,
     
     reg out_clk;
     reg [24:0]cnt_clk;
+    parameter DIVIDER = 249999;
     
     always@(posedge clk or negedge rst) begin
         if (!rst) begin
@@ -15,7 +16,8 @@ module clk_dll(rst,
         else begin
             cnt_clk <= cnt_clk + 1;
             
-            if (cnt_clk == 249999)
+            // if (cnt_clk >= 249999)
+            if (cnt_clk >= DIVIDER)
                 cnt_clk <= 0;
             else if (cnt_clk == 0)
                 out_clk = !out_clk;

@@ -1,0 +1,36 @@
+F:/Git_workspace/COSE221/doorlock/tb_clk_dll.v {1 {vlog -work work -stats=none F:/Git_workspace/COSE221/doorlock/tb_clk_dll.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb_clk
+
+Top level modules:
+	tb_clk
+
+} {} {}} F:/Git_workspace/COSE221/doorlock/seg7.v {1 {vlog -work work -stats=none F:/Git_workspace/COSE221/doorlock/seg7.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module seg7
+
+Top level modules:
+	seg7
+
+} {} {}} F:/Git_workspace/COSE221/doorlock/top_doorlock.v {1 {vlog -work work -stats=none F:/Git_workspace/COSE221/doorlock/top_doorlock.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module top_doorlock
+
+Top level modules:
+	top_doorlock
+
+} {} {}} F:/Git_workspace/COSE221/doorlock/tb_top.v {1 {vlog -work work -stats=none F:/Git_workspace/COSE221/doorlock/tb_top.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb_top
+
+Top level modules:
+	tb_top
+
+} {} {}} F:/Git_workspace/COSE221/doorlock/doorlock.v {1 {vlog -work work -stats=none F:/Git_workspace/COSE221/doorlock/doorlock.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module doorlock
+
+Top level modules:
+	doorlock
+
+} {} {}}
