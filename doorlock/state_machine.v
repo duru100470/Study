@@ -10,7 +10,7 @@ module state_machine(rst,
     parameter STATE_IDLE  = 2'b00;
     parameter STATE_START = 2'b01;
     parameter STATE_END   = 2'b10;
-    parameter DELAY = 4999;
+    parameter DELAY = 499;
     
     always @(posedge clk or negedge rst) begin
         if (!rst) begin
@@ -25,7 +25,7 @@ module state_machine(rst,
         end
     end
     
-    always @(state or ps_start or ps_end or posedge clk) begin
+    always @(state or ps_start or ps_end or clk) begin
         case (state)
             STATE_IDLE: if (ps_start)
             next_state <= STATE_START;

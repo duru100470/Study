@@ -9,6 +9,7 @@ module doorlock(state,
     
     reg door_open;
     reg [1:0] state_out, seg_out;
+	 reg [3:0] pw;
     parameter PASSWORD = 4'b1101;
     
     always @(state) begin
@@ -22,10 +23,11 @@ module doorlock(state,
             begin
                 door_open <= 0;
                 seg_out   <= 2'b00;
+					 pw <= ps_num;
             end
             2'b10:
             begin
-                if (ps_num == PASSWORD) begin
+                if (pw == PASSWORD) begin
                     door_open <= 1;
                     seg_out   <= 2'b01;
                 end

@@ -1,0 +1,117 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'clk'
+Slack : -4.779
+TNS   : -85.079
+
+Type  : Slow 1100mV 85C Model Setup 'clk_dll:u0|out_clk'
+Slack : -3.171
+TNS   : -51.127
+
+Type  : Slow 1100mV 85C Model Hold 'clk_dll:u0|out_clk'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'clk'
+Slack : 0.469
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk'
+Slack : -0.459
+TNS   : -17.456
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk_dll:u0|out_clk'
+Slack : -0.394
+TNS   : -8.727
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'state_machine:u1|state.STATE_START'
+Slack : 0.379
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'clk'
+Slack : -4.609
+TNS   : -83.224
+
+Type  : Slow 1100mV 0C Model Setup 'clk_dll:u0|out_clk'
+Slack : -3.120
+TNS   : -50.368
+
+Type  : Slow 1100mV 0C Model Hold 'clk_dll:u0|out_clk'
+Slack : 0.293
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'clk'
+Slack : 0.458
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk'
+Slack : -0.521
+TNS   : -19.057
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk_dll:u0|out_clk'
+Slack : -0.394
+TNS   : -8.810
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'state_machine:u1|state.STATE_START'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'clk'
+Slack : -3.889
+TNS   : -38.389
+
+Type  : Fast 1100mV 85C Model Setup 'clk_dll:u0|out_clk'
+Slack : -1.497
+TNS   : -24.363
+
+Type  : Fast 1100mV 85C Model Hold 'clk_dll:u0|out_clk'
+Slack : 0.098
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'clk'
+Slack : 0.260
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk'
+Slack : -0.525
+TNS   : -3.530
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk_dll:u0|out_clk'
+Slack : 0.131
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'state_machine:u1|state.STATE_START'
+Slack : 0.416
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'clk'
+Slack : -3.285
+TNS   : -32.379
+
+Type  : Fast 1100mV 0C Model Setup 'clk_dll:u0|out_clk'
+Slack : -1.338
+TNS   : -21.728
+
+Type  : Fast 1100mV 0C Model Hold 'clk_dll:u0|out_clk'
+Slack : 0.084
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'clk'
+Slack : 0.235
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk'
+Slack : -0.547
+TNS   : -3.503
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk_dll:u0|out_clk'
+Slack : 0.129
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'state_machine:u1|state.STATE_START'
+Slack : 0.428
+TNS   : 0.000
+
+------------------------------------------------------------

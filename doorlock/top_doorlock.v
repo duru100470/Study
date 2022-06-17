@@ -15,7 +15,7 @@ module top_doorlock (clk,
     input [3:0] ps_num;
     output door_open;
     output [1:0] state_out;
-    output [7:0] w1, w2, w3, w4, w5, w6;
+    output [6:0] w1, w2, w3, w4, w5, w6;
     
     wire out_clk;
     wire [1:0] state, seg_out;
