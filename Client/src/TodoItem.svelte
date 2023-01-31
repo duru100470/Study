@@ -1,11 +1,12 @@
 <script lang="ts">
     export let todo: {id: number, text: string, completed: boolean};
+    export let deleteTodo: (id: number) => void;
 </script>
 
 <div class="wrapper">
     <input type="checkbox" />
     <p>{todo.text}</p>
-    <button>❌</button>
+    <button on:click={() => deleteTodo(todo.id)}>❌</button>
 </div>
 
 <style>

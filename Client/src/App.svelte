@@ -1,17 +1,12 @@
 <script lang="ts">
 	import Input from "./Input.svelte";
 	import Todos from "./Todos.svelte";
+	import {fetchGet, fetchPut, fetchPost, fetchDelete} from "./functions";
 
 	type todoType = {id: number, text: string, completed: boolean};
 
 	let todoInput: string = "";
-	let todoList: todoType[] = [
-		{
-			id: 1,
-			text: "My first Todo",
-			completed: false
-		}
-	];
+	let todoList: todoType[] = null;
 
 	let lastId: number = todoList[todoList.length - 1].id;
 
@@ -22,11 +17,12 @@
 				text: todoInput,
 				completed: false
 			}
-
-			todoList[todoList.length] = newTodo;
-			todoInput = "";
 		}
 	};
+
+	let deleteTodo: (id: number) => void = (id) => {
+		todoList = todoList.filter((todo) => todo.id !== id);
+	}
 
 	let handleKeyUp: (e: any) => void = e => {
 		todoInput = e.target.value;
@@ -40,7 +36,7 @@
 	<div>
 		<p>Todo List</p>
 		<Input {todoInput} {addTodo} {handleKeyUp} />
-		<Todos todoList={todoList}/>
+		<Todos {todoList} {deleteTodo} />
 	</div>
 </main>
 
