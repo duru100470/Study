@@ -3,7 +3,7 @@
 	import Todos from "./Todos.svelte";
 	import {fetchGet, fetchPut, fetchPost, fetchDelete} from "./functions";
 
-	type todoType = {id: number, text: string, completed: boolean};
+	type todoType = {id: number, text: string, isComplete: boolean};
 
 	let todoInput: string = "";
 	let todoList: todoType[] = null;
@@ -15,7 +15,7 @@
 			let newTodo: todoType = {
 				id: ++lastId,
 				text: todoInput,
-				completed: false
+				isComplete: false
 			}
 		}
 	};

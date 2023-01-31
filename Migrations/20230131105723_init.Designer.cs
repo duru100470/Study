@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Testaspcore.Migrations
 {
     [DbContext(typeof(TodoDb))]
-    [Migration("20230130190127_init")]
+    [Migration("20230131105723_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,7 +27,7 @@ namespace Testaspcore.Migrations
                     b.Property<bool>("IsComplete")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

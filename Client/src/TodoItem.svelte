@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let todo: {id: number, text: string, completed: boolean};
+    export let todo: {id: number, text: string, isComplete: boolean};
     export let deleteTodo: (id: number) => void;
 </script>
 
