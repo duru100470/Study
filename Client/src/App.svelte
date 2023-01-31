@@ -2,26 +2,48 @@
 	import Input from "./Input.svelte";
 	import Todos from "./Todos.svelte";
 	import {fetchGet, fetchPut, fetchPost, fetchDelete} from "./functions";
+	import TodoItem from "./TodoItem.svelte";
 
 	type todoType = {id: number, text: string, isComplete: boolean};
 
 	let todoInput: string = "";
-	let todoList: todoType[] = null;
+	let todoList: todoType[] = [];
 
-	let lastId: number = todoList[todoList.length - 1].id;
+	async function loadTodo(): Promise<void> {
+		let res: Response = await fetchGet("/todos");
+		todoList = await res.json();
+	}
 
 	let addTodo: () => void = () => {
 		if (todoInput) {
 			let newTodo: todoType = {
-				id: ++lastId,
+				id: 0,
 				text: todoInput,
 				isComplete: false
 			}
+
+			fetchPost("/todos/", newTodo)
+				.then(() => loadTodo());
 		}
 	};
 
 	let deleteTodo: (id: number) => void = (id) => {
-		todoList = todoList.filter((todo) => todo.id !== id);
+		fetchDelete(`/todos/${id}`)
+			.then(() => loadTodo());
+	}
+
+	let completeTodo: (id: number) => void = (id) => {
+		let index: number = todoList.findIndex(todo => todo.id === id);
+
+		let newTodo: todoType = {
+			...todoList[index]
+		}
+		newTodo.isComplete = !newTodo.isComplete;
+
+		console.log(newTodo);
+
+		fetchPut(`/todos/${id}`, newTodo)
+			.then(() => todoList[index] = newTodo);
 	}
 
 	let handleKeyUp: (e: any) => void = e => {
@@ -30,13 +52,15 @@
 			addTodo();
 		}
 	}
+
+	loadTodo();
 </script>
 
 <main>
 	<div>
 		<p>Todo List</p>
 		<Input {todoInput} {addTodo} {handleKeyUp} />
-		<Todos {todoList} {deleteTodo} />
+		<Todos {todoList} {completeTodo} {deleteTodo} />
 	</div>
 </main>
 
