@@ -22,12 +22,14 @@
 
     input {
         margin: auto;
+        margin-left: 8px;
         width: 30px;
         height: 30px;
     }
 
     button {
         margin: auto;
+        margin-right: 8px;
         width: 30px;
         height: 30px;
         padding: 0px;

@@ -23,6 +23,7 @@
 			}
 
 			fetchPost("/todos/", newTodo)
+				.then(() => todoInput = "")
 				.then(() => loadTodo());
 		}
 	};
