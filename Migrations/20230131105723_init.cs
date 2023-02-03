@@ -16,7 +16,7 @@ namespace Testaspcore.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Text = table.Column<string>(type: "TEXT", nullable: true),
                     IsComplete = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

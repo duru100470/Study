@@ -44,7 +44,7 @@ public static class TodoEndpoints
     {
         var newTodo = new Todo
         {
-            Name = todo.Name,
+            Text = todo.Text,
             IsComplete = false
         };
         await db.Todos.AddAsync(newTodo);
@@ -59,7 +59,7 @@ public static class TodoEndpoints
 
         if (todo is null) return TypedResults.NotFound();
 
-        todo.Name = inputTodo.Name;
+        todo.Text = inputTodo.Text;
         todo.IsComplete = inputTodo.IsComplete;
 
         await db.SaveChangesAsync();

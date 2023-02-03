@@ -24,7 +24,7 @@ namespace Testaspcore.Migrations
                     b.Property<bool>("IsComplete")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Text")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
