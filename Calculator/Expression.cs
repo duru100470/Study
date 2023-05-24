@@ -7,13 +7,13 @@ public interface IExpression
 
 public abstract class Operator
 {
-    protected int augend;
-    protected int addend;
+    protected IExpression augend;
+    protected IExpression addend;
 
     public Operator(IExpression augend, IExpression addend)
     {
-        this.augend = augend.Calculate();
-        this.addend = addend.Calculate();
+        this.augend = augend;
+        this.addend = addend;
     }
 
     public abstract int Calculate();
@@ -25,7 +25,7 @@ public class Sum : Operator, IExpression
 
     public override int Calculate()
     {
-        return augend + addend;
+        return augend.Calculate() + addend.Calculate();
     }
 }
 
@@ -35,7 +35,7 @@ public class Subtract : Operator, IExpression
 
     public override int Calculate()
     {
-        return augend - addend;
+        return augend.Calculate() - addend.Calculate();
     }
 }
 
@@ -45,7 +45,17 @@ public class Multiply : Operator, IExpression
 
     public override int Calculate()
     {
-        return augend * addend;
+        return augend.Calculate() * addend.Calculate();
+    }
+}
+
+public class Divide : Operator, IExpression
+{
+    public Divide(IExpression augend, IExpression addend) : base(augend, addend) { }
+
+    public override int Calculate()
+    {
+        return augend.Calculate() / addend.Calculate();
     }
 }
 

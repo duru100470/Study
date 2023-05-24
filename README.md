@@ -2,7 +2,7 @@
 
 ## 계산기 만들기 프로젝트
 
-5 + 2 * 5 = 15  
+~~5 + 2 * 5 = 15~~  
 ~~1 + 1 = 2~~  
 ~~Expression 필드 private로 만들기~~  
 ~~빼기 연산~~  
@@ -15,3 +15,4 @@
 ~~Expression nullable 제거 필요~~  
 ~~Expression 인터페이스로 변경해야함~~  
 ~~Sum, Subtract, Multiply간 중복 발생~~  
+~~Lazy 연산 적용~~  
