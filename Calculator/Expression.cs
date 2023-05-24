@@ -1,22 +1,27 @@
 namespace Calculator;
 
-public abstract class Expression
+public interface IExpression
+{
+    int Calculate();
+}
+
+public abstract class Operator
 {
     protected int augend;
     protected int addend;
 
-    public Expression(Expression? augend, Expression? addend)
+    public Operator(IExpression augend, IExpression addend)
     {
-        this.augend = augend?.Calculate() ?? 0;
-        this.addend = addend?.Calculate() ?? 0;
+        this.augend = augend.Calculate();
+        this.addend = addend.Calculate();
     }
 
     public abstract int Calculate();
 }
 
-public class Sum : Expression
+public class Sum : Operator, IExpression
 {
-    public Sum(Expression augend, Expression addend) : base(augend, addend) { }
+    public Sum(IExpression augend, IExpression addend) : base(augend, addend) { }
 
     public override int Calculate()
     {
@@ -24,9 +29,9 @@ public class Sum : Expression
     }
 }
 
-public class Subtract : Expression
+public class Subtract : Operator, IExpression
 {
-    public Subtract(Expression augend, Expression addend) : base(augend, addend) { }
+    public Subtract(IExpression augend, IExpression addend) : base(augend, addend) { }
 
     public override int Calculate()
     {
@@ -34,9 +39,9 @@ public class Subtract : Expression
     }
 }
 
-public class Multiply : Expression
+public class Multiply : Operator, IExpression
 {
-    public Multiply(Expression augend, Expression addend) : base(augend, addend) { }
+    public Multiply(IExpression augend, IExpression addend) : base(augend, addend) { }
 
     public override int Calculate()
     {
@@ -44,15 +49,17 @@ public class Multiply : Expression
     }
 }
 
-public class Integer : Expression
+public class Integer : IExpression
 {
-    public Integer(int number) : base(null, null)
+    private int number;
+
+    public Integer(int number)
     {
-        this.augend = number;
+        this.number = number;
     }
 
-    public override int Calculate()
+    public int Calculate()
     {
-        return augend;
+        return number;
     }
 }

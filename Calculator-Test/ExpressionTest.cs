@@ -8,7 +8,7 @@ public class ExpressionTest
     public void Sum_TwoNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression = new Sum(new Integer(1), new Integer(1));
+        IExpression expression = new Sum(new Integer(1), new Integer(1));
         
         // Act
         var ret = expression.Calculate();
@@ -21,7 +21,7 @@ public class ExpressionTest
     public void Subtract_TwoNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression = new Subtract(new Integer(5), new Integer(2));
+        IExpression expression = new Subtract(new Integer(5), new Integer(2));
         
         // Act
         var ret = expression.Calculate();
@@ -34,7 +34,7 @@ public class ExpressionTest
     public void Multiply_TwoNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression = new Multiply(new Integer(5), new Integer(2));
+        IExpression expression = new Multiply(new Integer(5), new Integer(2));
         
         // Act
         var ret = expression.Calculate();
@@ -47,8 +47,8 @@ public class ExpressionTest
     public void Sum_ThreeNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression1 = new Sum(new Integer(1), new Integer(1));
-        Expression expression2 = new Sum(expression1, new Integer(2));
+        IExpression expression1 = new Sum(new Integer(1), new Integer(1));
+        IExpression expression2 = new Sum(expression1, new Integer(2));
 
         // Act
         var ret = expression2.Calculate();
@@ -61,7 +61,7 @@ public class ExpressionTest
     public void Integer_SingleNumber_ReturnsThatNumber()
     {
         // Arrange
-        Expression expression = new Integer(1);
+        IExpression expression = new Integer(1);
 
         // Act
         var ret = expression.Calculate();
