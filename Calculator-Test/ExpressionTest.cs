@@ -5,41 +5,68 @@ namespace Calculator_Test;
 public class ExpressionTest
 {
     [Test]
-    public void Sum_SingleNumbers_ReturnValidNumber()
+    public void Sum_TwoNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression = new Expression(1, 1);
+        Expression expression = new Sum(new Integer(1), new Integer(1));
         
         // Act
-        var ret = expression.Sum();
+        var ret = expression.Calculate();
 
         // Assert
         Assert.That(ret, Is.EqualTo(2));
     }
 
     [Test]
-    public void Subtract_SingleNumbers_ReturnValidNumber()
+    public void Subtract_TwoNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression = new Expression(5, 2);
+        Expression expression = new Subtract(new Integer(5), new Integer(2));
         
         // Act
-        var ret = expression.Subtract();
+        var ret = expression.Calculate();
 
         // Assert
         Assert.That(ret, Is.EqualTo(3));
     }
 
     [Test]
-    public void Multiply_SingleNumbers_ReturnValidNumber()
+    public void Multiply_TwoNumbers_ReturnValidNumber()
     {
         // Arrange
-        Expression expression = new Expression(5, 2);
+        Expression expression = new Multiply(new Integer(5), new Integer(2));
         
         // Act
-        var ret = expression.Multiply();
+        var ret = expression.Calculate();
 
         // Assert
         Assert.That(ret, Is.EqualTo(10));
+    }
+
+    [Test]
+    public void Sum_ThreeNumbers_ReturnValidNumber()
+    {
+        // Arrange
+        Expression expression1 = new Sum(new Integer(1), new Integer(1));
+        Expression expression2 = new Sum(expression1, new Integer(2));
+
+        // Act
+        var ret = expression2.Calculate();
+
+        // Assert
+        Assert.That(ret, Is.EqualTo(4));
+    }
+
+    [Test]
+    public void Integer_SingleNumber_ReturnsThatNumber()
+    {
+        // Arrange
+        Expression expression = new Integer(1);
+
+        // Act
+        var ret = expression.Calculate();
+
+        // Assert
+        Assert.That(ret, Is.EqualTo(1));
     }
 }
