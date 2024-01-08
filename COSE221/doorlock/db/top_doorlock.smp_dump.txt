@@ -1,0 +1,6 @@
+
+State Machine - |top_doorlock|state_machine:u1|state
+Name state.STATE_IDLE state.STATE_END state.STATE_START 
+state.STATE_IDLE 0 0 0 
+state.STATE_START 1 0 1 
+state.STATE_END 1 1 0 

@@ -1,0 +1,173 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "door_open",
+					"strict" : false
+				},
+				{
+					"name" : "state_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "state_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w5[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w5[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w5[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w6[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w6[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w6[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w6[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ps_end",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "ps_num[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ps_num[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ps_num[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ps_num[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ps_start",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
