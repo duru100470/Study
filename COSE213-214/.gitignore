@@ -1,0 +1,6 @@
+## Ignore result file ##
+*.result
+al/al5/text.txt
+al/al5/sample.txt
+al/al5/text.enc
+al/al5/text.dec
